@@ -34,7 +34,9 @@
     </a>
   </section>
   <section class="navbar-section title-section">
-    <h1 class="lg-header">DEVDLE</h1>
+    <a href="/">
+      <h1 class="lg-header">DEVDLE</h1>
+    </a>
   </section>
   <section class="navbar-section">
     <div
@@ -47,7 +49,13 @@
       <img src="/icons/help.png" alt="Help" class="icon-images" />
     </div>
     <div>
-      <img src="/icons/leaderboard.png" alt="Leaderboard" class="icon-images" />
+      <a href="/leaderboard">
+        <img
+          src="/icons/leaderboard.png"
+          alt="Leaderboard"
+          class="icon-images"
+        />
+      </a>
     </div>
     <div
       on:click={toggleTheme}
@@ -82,7 +90,9 @@
       &.title-section {
         justify-content: center;
 
-        & h1 {
+        & a {
+          text-decoration: none;
+          color: var(--color-contrast);
           display: inline-block;
         }
       }
