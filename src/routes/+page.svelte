@@ -35,7 +35,6 @@
   let gameOverMessage: string = "";
 
   $: isWordCardOpen = false;
-  $: isHelpOpen = false;
   let popOver: HTMLDivElement;
 
   const getColorsFromGuess = (
@@ -166,9 +165,6 @@
 </main>
 
 <style>
-  main {
-    position: relative;
-  }
   .pop-over {
     visibility: hidden;
     opacity: 0;
