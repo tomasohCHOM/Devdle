@@ -21,7 +21,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@lucia-auth/adapter-prisma": "^3.0.0",
 		"@prisma/client": "^5.0.0",
+		"lucia-auth": "^1.8.0",
 		"sass": "^1.64.1"
 	}
 }
