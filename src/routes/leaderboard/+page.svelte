@@ -1,5 +1,4 @@
 <script lang="ts">
-  import "../../app.css";
   import PlayerCard from "$lib/components/PlayerCard.svelte";
 
   let dummyData = [
@@ -19,6 +18,10 @@
       : 0
   );
 </script>
+
+<svelte:head>
+  <title>Leaderboard | Devdle</title>
+</svelte:head>
 
 <section class="stats-wrapper">
   {#each dummyData as player}

@@ -46,6 +46,7 @@
 
 <style lang="scss">
   .sub-header {
+    font-size: 1.5rem;
     margin: 0;
   }
 
