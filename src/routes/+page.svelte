@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
-  import { ANSWER_LIST, ANSWERS } from "$lib/constants/answersList";
+  import { ANSWERS } from "$lib/constants/answersList";
   import { WIN_MESSAGES } from "$lib/constants/strings";
   import {
     WORD_REVEAL_ANIMATION_DELAY,
@@ -96,9 +96,7 @@
       triggerPopOver("Not enough letters");
       return;
     }
-    if (
-      !(validGuesses.has(currentGuess) || ANSWER_LIST.includes(currentGuess))
-    ) {
+    if (!validGuesses.has(currentGuess)) {
       isError = true;
       setTimeout(() => (isError = false), 250);
       triggerPopOver("Not a valid word");
