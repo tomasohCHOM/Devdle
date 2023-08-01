@@ -70,7 +70,9 @@
         class="icon-images"
       />
     </div>
-    <button class="sign-in">Sign In</button>
+    <a href="/login">
+      <button class="sign-in">Log In</button>
+    </a>
   </section>
 </header>
 
@@ -95,6 +97,10 @@
           color: var(--color-contrast);
           display: inline-block;
         }
+      }
+
+      & a {
+        text-decoration: none;
       }
 
       & button {

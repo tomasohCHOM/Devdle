@@ -1,0 +1,55 @@
+h2 {
+  font-size: 2rem;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: min(90vw, 30em);
+  background: transparent;
+  box-shadow: 0 0 0.75rem rgba(12, 26, 32, 0.25);
+  border-radius: 2rem;
+  // border: 2px solid var(--border-active);
+
+  & * {
+    margin-block-end: 0.5rem;
+  }
+
+  & label {
+    font-size: 1.25rem;
+  }
+
+  & input[type="text"],
+  & input[type="password"] {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-contrast);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--border-active);
+    font-family: var(--ff-regular);
+    outline: none;
+  }
+
+  & button {
+    margin-block-start: 1rem;
+    width: 100%;
+    border-radius: 1.5rem;
+    background-color: var(--color-correct);
+    color: var(--color-true-white);
+  }
+  & .new-user {
+    & a {
+      color: var(--color-contrast);
+    }
+  }
+}

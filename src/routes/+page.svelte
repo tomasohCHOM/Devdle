@@ -15,7 +15,7 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import Help from "$lib/components/Help.svelte";
   import WordCard from "$lib/components/WordCard.svelte";
-  import "../app.css";
+  import "../styles/app.css";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
 
@@ -142,6 +142,10 @@
       document.documentElement.setAttribute("data-theme", "dark");
   });
 </script>
+
+<svelte:head>
+  <title>Devdle</title>
+</svelte:head>
 
 <main>
   <WordCard bind:secret bind:isOpen={isWordCardOpen} />
