@@ -1,11 +1,11 @@
 import lucia from "lucia-auth";
-import { prisma } from "@lucia-auth/adapter-prisma";
+import prisma from "@lucia-auth/adapter-prisma";
 import { sveltekit } from "lucia-auth/middleware";
 import { dev } from "$app/environment";
-import { client } from "$lib/server/prisma";
+import { prismaClient } from "$lib/server/prisma";
 
 export const auth = lucia({
-  adapter: prisma(client),
+  adapter: prisma(prismaClient),
   env: dev ? "DEV" : "PROD",
   middleware: sveltekit(),
   transformDatabaseUser: (userData) => {
