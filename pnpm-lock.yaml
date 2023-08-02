@@ -9,7 +9,7 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0(@prisma/client@5.1.0)(lucia-auth@1.8.0)
   '@prisma/client':
-    specifier: ^5.0.0
+    specifier: ^5.1.0
     version: 5.1.0(prisma@5.1.0)
   lucia-auth:
     specifier: ^1.8.0
