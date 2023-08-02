@@ -136,8 +136,6 @@
   onMount(async () => {
     window.addEventListener("keydown", handleKeyType);
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
-    localStorage.getItem("theme") === "dark" &&
-      document.documentElement.setAttribute("data-theme", "dark");
   });
 </script>
 
