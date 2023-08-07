@@ -10,17 +10,22 @@
 
 <form action="" method="POST">
   <div class="container">
-    <label for="uname"><b>Create Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required />
+    <label for="email"><b>Create Username</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required />
 
-    <label for="psw"><b>Create Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required />
+    <label for="password"><b>Create Password</b></label>
+    <input
+      type="password"
+      placeholder="Enter Password"
+      name="password"
+      required
+    />
 
-    <label for="confirm-psw"><b>Confirm Password</b></label>
+    <label for="confirm-password"><b>Confirm Password</b></label>
     <input
       type="password"
       placeholder="Confirm Password"
-      name="confirm-psw"
+      name="confirm-password"
       required
     />
 
