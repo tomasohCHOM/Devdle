@@ -5,6 +5,15 @@ export const actions = {
     const formData = await request.formData();
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirm-password") as string;
+
+    if (password !== confirmPassword) {
+      return fail(400, {
+        message: "Passwords do not match.",
+        success: false,
+        email,
+      });
+    }
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -23,7 +32,7 @@ export const actions = {
     }
 
     return {
-      message: "Successful login.",
+      message: "Successfully logged in.",
       success: true,
     };
   },

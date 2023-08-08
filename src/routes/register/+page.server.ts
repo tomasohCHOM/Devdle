@@ -23,7 +23,7 @@ export const actions = {
     }
 
     return {
-      message: "Successful login.",
+      message: "Successfully signed up.",
       success: true,
     };
   },
