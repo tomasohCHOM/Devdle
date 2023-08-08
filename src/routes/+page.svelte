@@ -1,4 +1,5 @@
 <script lang="ts">
+  import "../styles/app.css";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
   import { ANSWERS } from "$lib/constants/answersList";
@@ -15,7 +16,6 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import Help from "$lib/components/Help.svelte";
   import WordCard from "$lib/components/WordCard.svelte";
-  import "../styles/app.css";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
 

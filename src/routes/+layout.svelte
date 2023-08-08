@@ -1,4 +1,5 @@
 <script lang="ts">
+  import "../styles/app.css";
   import Help from "$lib/components/Help.svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import { onMount } from "svelte";
