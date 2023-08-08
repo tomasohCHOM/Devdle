@@ -1,7 +1,7 @@
 import { fail } from "@sveltejs/kit";
 
 export const actions = {
-  default: async ({ request, url, locals: { supabase } }) => {
+  default: async ({ request, url, locals: { supabase } }: any) => {
     const formData = await request.formData();
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -23,8 +23,7 @@ export const actions = {
     }
 
     return {
-      message:
-        "Please check your email for a magic link to log into the website.",
+      message: "Successful login.",
       success: true,
     };
   },

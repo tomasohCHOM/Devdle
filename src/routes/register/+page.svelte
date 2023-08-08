@@ -10,7 +10,7 @@
 
 <form action="" method="POST">
   <div class="container">
-    <label for="email"><b>Create Username</b></label>
+    <label for="email"><b>Enter your Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required />
 
     <label for="password"><b>Create Password</b></label>
