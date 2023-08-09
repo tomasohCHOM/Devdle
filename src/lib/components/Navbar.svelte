@@ -1,9 +1,7 @@
 <script lang="ts">
-  // import githubLogo from "/icons/github-logo.png";
-  // import leaderboard from "/icons/leaderboard.png";
-  // import darkTheme from "/icons/dark-theme.png";
-  // import help from "/icons/help.png";
+  import type { PageData } from "../../routes/$types";
 
+  export let data: PageData;
   export let isContainerOpen: boolean;
 
   const toggleContainer = (): void => {
@@ -70,9 +68,16 @@
         class="icon-images"
       />
     </div>
-    <a href="/login">
-      <button class="sign-in">Log In</button>
-    </a>
+
+    {#if data.session}
+      <form action="/logout" method="post">
+        <button type="submit">Log Out</button>
+      </form>
+    {:else}
+      <a href="/login">
+        <button>Log In</button>
+      </a>
+    {/if}
   </section>
 </header>
 
