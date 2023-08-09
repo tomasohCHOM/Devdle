@@ -1,11 +1,18 @@
 import type { Provider } from "@supabase/supabase-js";
 import { fail, redirect } from "@sveltejs/kit";
 
+const OAUTH_PROVIDERS = ["google", "github", "discord"];
+
 export const actions = {
   login: async ({ request, url, locals: { supabase } }) => {
     const provider = url.searchParams.get("provider") as Provider;
 
     if (provider) {
+      if (!OAUTH_PROVIDERS.includes(provider)) {
+        return fail(400, {
+          message: "Provider not supported",
+        });
+      }
       const { data, error: err } = await supabase.auth.signInWithOAuth({
         provider: provider,
       });

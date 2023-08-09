@@ -1,6 +1,34 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
   import "../../styles/form.scss";
+  import { enhance } from "$app/forms";
+  import type { Provider } from "@supabase/supabase-js";
+  import type { SubmitFunction, PageData } from "./$types";
+
+  export let data: PageData;
+  $: ({ supabase } = data);
+
+  const signInWithProvider = async (provider: Provider) => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+    });
+  };
+
+  const submitSocialLogin: SubmitFunction = async ({ action, cancel }) => {
+    switch (action.searchParams.get("provider")) {
+      case "google":
+        await signInWithProvider("google");
+        break;
+      case "github":
+        await signInWithProvider("github");
+        break;
+      case "discord":
+        await signInWithProvider("discord");
+        break;
+      default:
+        break;
+    }
+    cancel();
+  };
 </script>
 
 <svelte:head>
@@ -27,10 +55,10 @@
       Don't Have an Account? <a href="/register">Sign Up Here</a>
     </div>
 
-    <form class="socials" method="post">
-      <button>Google</button>
+    <form class="socials" method="post" use:enhance={submitSocialLogin}>
+      <button formaction="?/login&provider=google">Google</button>
       <button formaction="?/login&provider=github">Github</button>
-      <button>Discord</button>
+      <button formaction="?/login&provider=discord">Discord</button>
     </form>
   </div>
 </form>
