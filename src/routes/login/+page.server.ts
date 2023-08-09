@@ -1,19 +1,10 @@
 import { fail } from "@sveltejs/kit";
 
 export const actions = {
-  default: async ({ request, url, locals: { supabase } }: any) => {
+  login: async ({ request, url, locals: { supabase } }) => {
     const formData = await request.formData();
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const confirmPassword = formData.get("confirm-password") as string;
-
-    if (password !== confirmPassword) {
-      return fail(400, {
-        message: "Passwords do not match.",
-        success: false,
-        email,
-      });
-    }
 
     const { error } = await supabase.auth.signUp({
       email,

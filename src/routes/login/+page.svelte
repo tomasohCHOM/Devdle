@@ -11,7 +11,7 @@
 
 <h2>Login to Devdle</h2>
 
-<form method="post" use:enhance>
+<form action="?/login" method="post">
   <div class="container">
     <label for="email"><b>Email</b></label>
     <input

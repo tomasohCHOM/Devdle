@@ -8,7 +8,7 @@
 
 <h2>Sign Up to Devdle</h2>
 
-<form action="" method="POST">
+<form action="?/register" method="POST">
   <div class="container">
     <label for="email"><b>Enter your Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required />
