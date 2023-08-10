@@ -70,6 +70,11 @@
         color: var(--color-contrast);
         border: 2px solid var(--border-active);
         // transition: all 0.25s ease-out;
+        & img,
+        & span {
+          margin: 0 0.125rem;
+          vertical-align: middle;
+        }
       }
     }
   }
