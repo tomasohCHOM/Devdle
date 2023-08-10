@@ -4,6 +4,8 @@
   export let data: PageData;
   export let isContainerOpen: boolean;
 
+  let isDropdownOpen: boolean = false;
+
   const toggleContainer = (): void => {
     isContainerOpen = !isContainerOpen;
     console.log(isContainerOpen);
@@ -18,6 +20,10 @@
       element.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
     }
+  };
+
+  const triggerDropdown = (): void => {
+    isDropdownOpen = !isDropdownOpen;
   };
 </script>
 
@@ -70,9 +76,24 @@
     </div>
 
     {#if data.session}
-      <form action="/logout" method="post">
-        <button type="submit">Log Out</button>
-      </form>
+      <div
+        on:click={triggerDropdown}
+        on:keydown={triggerDropdown}
+        role="button"
+        aria-pressed="false"
+        tabindex="0"
+      >
+        {#if isDropdownOpen}
+          <form action="/logout" method="post">
+            <button type="submit">Log Out</button>
+          </form>
+        {/if}
+        <img
+          class="icon-images filter-on"
+          src="/icons/profile.png"
+          alt="Account Profile"
+        />
+      </div>
     {:else}
       <a href="/login">
         <button>Log In</button>
@@ -139,6 +160,16 @@
     font-family: var(--ff-custom);
     letter-spacing: -0.125rem;
   }
+
+  // .rounded {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 40px;
+  //   aspect-ratio: 1;
+  //   border: 2px solid var(--border-active);
+  //   border-radius: 50%;
+  // }
 
   @media screen and (max-width: 50em) {
     .navbar {
