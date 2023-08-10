@@ -25,9 +25,9 @@
   <section class="navbar-section">
     <a href="https://github.com/tomasohCHOM/Devdle">
       <img
-        src="/icons/github-logo.png"
+        src="/icons/github.png"
         alt="Githbub Repo Link"
-        class="icon-images"
+        class="icon-images filter-on"
       />
     </a>
   </section>
@@ -44,14 +44,14 @@
       aria-pressed="false"
       tabindex="0"
     >
-      <img src="/icons/help.png" alt="Help" class="icon-images" />
+      <img src="/icons/help.png" alt="Help" class="icon-images filter-on" />
     </div>
     <div>
       <a href="/leaderboard">
         <img
           src="/icons/leaderboard.png"
           alt="Leaderboard"
-          class="icon-images"
+          class="icon-images filter-on"
         />
       </a>
     </div>
@@ -65,7 +65,7 @@
       <img
         src="icons/dark-theme.png"
         alt="Dark Theme Toggle"
-        class="icon-images"
+        class="icon-images filter-on"
       />
     </div>
 

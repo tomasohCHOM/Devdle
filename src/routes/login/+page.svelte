@@ -37,29 +37,24 @@
 
 <h2>Login to Devdle</h2>
 
-<form action="?/login" method="post">
+<form class="socials" method="post" use:enhance={submitSocialLogin}>
   <div class="container">
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required />
-
-    <label for="password"><b>Password</b></label>
-    <input
-      type="password"
-      placeholder="Enter Password"
-      name="password"
-      required
-    />
-
-    <button type="submit">Login</button>
-    <div class="new-user">
-      Don't Have an Account? <a href="/register">Sign Up Here</a>
-    </div>
-
-    <form class="socials" method="post" use:enhance={submitSocialLogin}>
-      <button formaction="?/login&provider=google">Google</button>
-      <button formaction="?/login&provider=github">Github</button>
-      <button formaction="?/login&provider=discord">Discord</button>
-    </form>
+    <button formaction="?/login&provider=google">
+      <img class="icon-images" src="/icons/google.png" alt="Google Logo" />
+      <span>Sign in with Google</span>
+    </button>
+    <button formaction="?/login&provider=github">
+      <img
+        class="icon-images filter-on"
+        src="/icons/github.png"
+        alt="Github Logo"
+      />
+      <span>Sign in with Github</span>
+    </button>
+    <button formaction="?/login&provider=discord">
+      <img class="icon-images" src="/icons/discord.png" alt="Discord Logo" />
+      <span>Sign in with Discord</span>
+    </button>
   </div>
 </form>
 
@@ -67,13 +62,15 @@
   .socials {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
-    & button {
-      margin-inline: 0.5rem;
-      background-color: var(--color-primary);
-      color: var(--color-true-white);
-      border: 2px solid var(--border-active);
+    & .container {
+      & button {
+        background-color: var(--color-primary);
+        color: var(--color-contrast);
+        border: 2px solid var(--border-active);
+        // transition: all 0.25s ease-out;
+      }
     }
   }
 </style>

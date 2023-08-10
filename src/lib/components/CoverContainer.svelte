@@ -22,7 +22,7 @@
     <h2>{title}</h2>
     <button class="close-window-btn" on:click={toggleContainer}
       ><img
-        class="icon-images"
+        class="icon-images filter-on"
         src="/icons/close-window.png"
         alt="Close Window"
       /></button

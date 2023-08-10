@@ -7,7 +7,7 @@ import type { Handle } from "@sveltejs/kit";
 import { redirect, error } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
-export const handle: Handle = async ({ event, resolve }) => {
+export const createClient: Handle = async ({ event, resolve }) => {
   event.locals.supabase = createSupabaseServerClient({
     supabaseUrl: PUBLIC_SUPABASE_URL,
     supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
@@ -33,29 +33,29 @@ export const handle: Handle = async ({ event, resolve }) => {
   });
 };
 
-// const protectRoutes: Handle = async ({ event, resolve }) => {
-//   // protect requests to all routes that start with /protected-routes
-//   if (event.url.pathname.startsWith("/protected-routes")) {
-//     const session = await event.locals.getSession();
-//     if (!session) {
-//       // the user is not signed in
-//       throw redirect(303, "/");
-//     }
-//   }
+const protectRoutes: Handle = async ({ event, resolve }) => {
+  // protect requests to all routes that start with /protected-routes
+  if (event.url.pathname.startsWith("/protected-routes")) {
+    const session = await event.locals.getSession();
+    if (!session) {
+      // the user is not signed in
+      throw redirect(303, "/");
+    }
+  }
 
-//   // protect POST requests to all routes that start with /protected-posts
-//   if (
-//     event.url.pathname.startsWith("/protected-posts") &&
-//     event.request.method === "POST"
-//   ) {
-//     const session = await event.locals.getSession();
-//     if (!session) {
-//       // the user is not signed in
-//       throw error(303, "/");
-//     }
-//   }
+  // protect POST requests to all routes that start with /protected-posts
+  if (
+    event.url.pathname.startsWith("/protected-posts") &&
+    event.request.method === "POST"
+  ) {
+    const session = await event.locals.getSession();
+    if (!session) {
+      // the user is not signed in
+      throw error(303, "/");
+    }
+  }
 
-//   return resolve(event);
-// };
+  return resolve(event);
+};
 
-// export const handle = sequence(createClient, protectRoutes);
+export const handle = sequence(createClient, protectRoutes);
