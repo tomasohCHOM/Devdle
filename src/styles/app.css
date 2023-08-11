@@ -113,7 +113,7 @@ button {
   touch-action: none;
 }
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 30em) {
   .icon-images {
     width: 1.5rem;
     height: 1.5rem;
