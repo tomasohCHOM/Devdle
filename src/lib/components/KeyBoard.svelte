@@ -5,8 +5,10 @@
   export let guesses: string[];
   export let answer: string;
   export let handleSubmit: () => void;
+  const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
 
   const processKeyColors = (letter: string) => {
+    // [BURNT, HELLO, CLASS]
     for (const guess of guesses) {
       if (guess.includes(letter)) {
         console.log(guess);
@@ -14,16 +16,14 @@
           if (guess[i] === letter && guess[i] === answer[i]) {
             return "correct";
           } else {
-            return "present";
           }
         }
-      } else {
-        return "absent";
+        return "present";
       }
     }
+    return "";
   };
 
-  const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
   const clickKey = (key: string) => {
     if (key == "<") {
       currentGuess = currentGuess.slice(0, -1);
