@@ -1,23 +1,40 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import type { PageData } from "../../routes/$types";
 
   export let data: PageData;
   export let isContainerOpen: boolean;
 
+  let currentTheme: string;
+
+  onMount(() => {
+    const savedTheme = document.documentElement.getAttribute("data-theme");
+    if (savedTheme) {
+      currentTheme = savedTheme;
+      return;
+    }
+    const preferenceIsDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const theme = preferenceIsDark ? "dark" : "light";
+    setTheme(theme);
+  });
+
+  const toggleTheme = (): void => {
+    const theme = currentTheme === "light" ? "dark" : "light";
+    setTheme(theme);
+  };
+
+  const setTheme = (theme: string): void => {
+    const period = 60 * 60 * 24 * 365;
+    document.cookie = `theme=${theme}; max-age=${period}; path=/`;
+    document.documentElement.setAttribute("data-theme", theme);
+    currentTheme = theme;
+  };
+
   const toggleContainer = (): void => {
     isContainerOpen = !isContainerOpen;
     console.log(isContainerOpen);
-  };
-
-  const toggleTheme = (): void => {
-    const element: HTMLElement = document.documentElement;
-    if (element.getAttribute("data-theme") === "dark") {
-      element.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    } else {
-      element.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    }
   };
 </script>
 
@@ -149,20 +166,13 @@
       padding: 0 0.5rem;
 
       & :first-child {
-        flex: 0.5;
         flex: 0;
       }
 
       & :last-child {
-        flex: 2;
+        flex-basis: max-content;
         flex-grow: 0;
         gap: 0.5rem;
-
-        & button {
-          max-width: fit-content;
-          display: inline-flex;
-          align-self: start;
-        }
       }
     }
 
@@ -176,10 +186,12 @@
 
   @media screen and (max-width: 30em) {
     .navbar {
+      gap: 0.5rem;
       & :last-child {
+        gap: 0.25rem;
         & button {
-          padding: 0.25rem 0.5rem;
           font-size: 0.875rem;
+          padding: 0.25rem 0.5rem;
           border-radius: 0.75rem;
         }
       }

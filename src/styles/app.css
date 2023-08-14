@@ -41,6 +41,10 @@
   box-sizing: border-box;
 }
 
+html {
+  transition: all 0.125s linear;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -84,7 +88,7 @@ button {
     brightness(99%) contrast(83%);
 }
 
-[data-theme="light"] {
+html[data-theme="light"] {
   --color-primary: #ffffff;
   --color-secondary: #e9e9e9;
   --color-contrast: #393939;
@@ -94,7 +98,7 @@ button {
   /* transition: all 0.15s ease-in; */
 }
 
-[data-theme="dark"] {
+html[data-theme="dark"] {
   --color-primary: #393939;
   --color-secondary: #4e4e4e;
   --color-contrast: #e5e5e5;

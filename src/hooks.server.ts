@@ -7,7 +7,7 @@ import type { Handle } from "@sveltejs/kit";
 import { redirect, error } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
-export const createClient: Handle = async ({ event, resolve }) => {
+const createClient: Handle = async ({ event, resolve }) => {
   event.locals.supabase = createSupabaseServerClient({
     supabaseUrl: PUBLIC_SUPABASE_URL,
     supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
@@ -58,4 +58,16 @@ const protectRoutes: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle = sequence(createClient, protectRoutes);
+const handleTheme = (async ({ event, resolve }) => {
+  const theme = event.cookies.get("theme");
+
+  if (theme) {
+    return await resolve(event, {
+      transformPageChunk: ({ html }) =>
+        html.replace('data-theme=""', `data-theme="${theme}"`),
+    });
+  }
+  return await resolve(event);
+}) satisfies Handle;
+
+export const handle = sequence(createClient, protectRoutes, handleTheme);

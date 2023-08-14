@@ -37,6 +37,11 @@
   $: isWordCardOpen = false;
   let popOver: HTMLDivElement;
 
+  onMount(async () => {
+    window.addEventListener("keydown", handleKeyType);
+    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+  });
+
   const getColorsFromGuess = (
     guessedWords: string[],
     attempts: number
@@ -132,11 +137,6 @@
     if (currentGuess.length === 5) return;
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
-
-  onMount(async () => {
-    window.addEventListener("keydown", handleKeyType);
-    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
-  });
 </script>
 
 <svelte:head>
