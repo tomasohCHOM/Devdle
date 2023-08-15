@@ -45,7 +45,7 @@
   });
 
   onDestroy(async () => {
-    window.removeEventListener("keydown", handleKeyType);
+    if (browser) window.removeEventListener("keydown", handleKeyType);
   });
 
   const getColorsFromGuess = (
@@ -117,7 +117,10 @@
     getColorsFromGuess(guesses, numAttempts);
 
     if (currentGuess === secret.word || guesses.length === 6) {
-      isGameOver = true;
+      if (browser) window.removeEventListener("keydown", handleKeyType);
+      setTimeout(() => {
+        isGameOver = true;
+      }, WORD_REVEAL_ANIMATION_DELAY + MESSAGE_DURATION);
       if (currentGuess === secret.word) {
         gameOverMessage = WIN_MESSAGES[numAttempts];
       } else {
@@ -152,6 +155,7 @@
     isGameOver = false;
     isError = false;
     gameOverMessage = "";
+    if (browser) window.addEventListener("keydown", handleKeyType);
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
   };
 </script>
