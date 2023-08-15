@@ -33,10 +33,11 @@
           <div
             class="board-cell {guesses[i] !== undefined
               ? convertColorsToCSSColorClasses(i, j)
-              : ''} {i === guesses.length && currentGuess[j] !== undefined
-              ? 'border-active'
-              : ''} {i === guesses.length && isError === true ? 'shake' : ''}"
-            style="--order: {j}; --win-delay: {WORD_REVEAL_ANIMATION_DELAY}"
+              : ''}"
+            class:border-active={i === guesses.length &&
+              currentGuess[j] !== undefined}
+            class:shake={i === guesses.length && isError === true}
+            style="--order: {j}; --win-delay: {WORD_REVEAL_ANIMATION_DELAY};"
           >
             {#if i === numAttempts && currentGuess.length - 1 >= j}
               {currentGuess[j].toUpperCase()}

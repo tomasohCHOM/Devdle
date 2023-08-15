@@ -7,21 +7,29 @@
   export let handleSubmit: () => void;
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
 
+  /**
+   * Algorithm to get the corresponding color status of a single key in
+   * the keyboard, prioritizing green over yellow, and yellow over gray.
+   * @param letter
+   */
   const processKeyColors = (letter: string) => {
-    // [BURNT, HELLO, CLASS]
+    let result: string = "";
     for (const guess of guesses) {
       if (guess.includes(letter)) {
-        console.log(guess);
-        for (let i = 0; i < guess.length; i++) {
-          if (guess[i] === letter && guess[i] === answer[i]) {
-            return "correct";
-          } else {
+        if (answer.includes(letter)) {
+          result = "present";
+          for (let i = 0; i < guess.length; i++) {
+            if (guess[i] === letter && guess[i] === answer[i]) {
+              result = "correct";
+              return result;
+            }
           }
+        } else {
+          result = "absent";
         }
-        return "present";
       }
     }
-    return "";
+    return result;
   };
 
   const clickKey = (key: string) => {
@@ -44,9 +52,9 @@
       <div class="row">
         {#each key as letter}
           <button
-            class="keyboard-key {processKeyColors(
+            class="keyboard-key .disable-double-tap-zoom {processKeyColors(
               letter
-            )} .disable-double-tap-zoom"
+            )}"
             on:click={() => {
               clickKey(letter);
             }}
@@ -76,18 +84,36 @@
   }
 
   .correct {
+    --_corresponding-color: var(--color-correct);
     background-color: var(--color-correct);
     color: var(--color-true-white);
+    /* animation-name: keyboardDelay;
+    animation-delay: calc(var(--key-delay) * 1ms); */
   }
 
   .present {
+    --_corresponding-color: var(--color-present);
     background-color: var(--color-present);
     color: var(--color-true-white);
+    /* animation-name: keyboardDelay;
+    animation-delay: calc(var(--key-delay) * 1ms); */
   }
 
   .absent {
+    --_corresponding-color: var(--color-absent);
     background-color: var(--color-absent);
     color: var(--color-true-white);
+    /* animation-name: keyboardDelay;
+    animation-delay: calc(var(--key-delay) * 1ms); */
+  }
+
+  @keyframes keyboardDelay {
+    0% {
+    }
+    100% {
+      background-color: var(--_corresponding-color);
+      color: var(--color-true-white);
+    }
   }
 
   @media screen and (max-width: 36em) {
