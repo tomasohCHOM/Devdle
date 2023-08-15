@@ -1,7 +1,8 @@
 <script lang="ts">
   import "../styles/app.css";
   import { browser } from "$app/environment";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
+  import type { PageData } from "./$types";
   import { ANSWERS } from "$lib/constants/answersList";
   import { WIN_MESSAGES } from "$lib/constants/strings";
   import {
@@ -25,6 +26,7 @@
     supplementalImageLink: string;
   }
 
+  export let data: PageData;
   let secret: Secret;
   let guesses: string[] = [];
   let colorsFromGuesses: string[] = [];
@@ -40,6 +42,10 @@
   onMount(async () => {
     window.addEventListener("keydown", handleKeyType);
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+  });
+
+  onDestroy(async () => {
+    window.removeEventListener("keydown", handleKeyType);
   });
 
   const getColorsFromGuess = (
@@ -137,6 +143,17 @@
     if (currentGuess.length === 5) return;
     if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
+
+  const resetGame = () => {
+    guesses = [];
+    colorsFromGuesses = [];
+    currentGuess = "";
+    numAttempts = 0;
+    isGameOver = false;
+    isError = false;
+    gameOverMessage = "";
+    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+  };
 </script>
 
 <svelte:head>
@@ -155,6 +172,14 @@
     bind:numAttempts
     bind:isError
   />
+
+  {#if data.session}
+    {#if isGameOver}
+      <button class="reset-button" on:click={resetGame}>
+        Generate New Word
+      </button>
+    {/if}
+  {/if}
 
   <KeyBoard
     bind:currentGuess
@@ -178,5 +203,11 @@
     color: var(--color-primary);
     padding: 0.5rem 0.5rem;
     border-radius: 0.25rem;
+  }
+
+  .reset-button {
+    margin-block: 0.5rem;
+    color: var(--color-contrast);
+    /* border: 2px solid var(--border-empty); */
   }
 </style>

@@ -74,7 +74,7 @@
 
 <style>
   main {
-    padding-block-end: 2rem;
+    padding-block-end: 1.5rem;
   }
 
   .keyboard-key {
