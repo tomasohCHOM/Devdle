@@ -5,7 +5,6 @@
   export let isOpen: boolean;
 
   const toggleContainer = () => {
-    console.log(isOpen);
     isOpen = !isOpen;
   };
 </script>

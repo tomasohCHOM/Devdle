@@ -14,8 +14,6 @@
   import setCharAt from "$lib/constants/utils";
   import Board from "$lib/components/Board.svelte";
   import KeyBoard from "$lib/components/KeyBoard.svelte";
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Help from "$lib/components/Help.svelte";
   import WordCard from "$lib/components/WordCard.svelte";
 
   const validGuesses = new Set<string>(VALID_GUESSES);
@@ -41,7 +39,33 @@
 
   onMount(async () => {
     window.addEventListener("keydown", handleKeyType);
-    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    // Get all items from localStorage if they exist
+    const storedSecret = localStorage.getItem("secret");
+    secret =
+      storedSecret != null
+        ? JSON.parse(storedSecret)
+        : ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+
+    const storedAttempts = localStorage.getItem("attempts");
+    numAttempts = storedAttempts ? parseInt(JSON.stringify(storedAttempts)) : 0;
+
+    const storedGuesses = localStorage.getItem("guesses");
+    guesses = storedGuesses != null ? JSON.parse(storedGuesses) : [];
+
+    const storedColorsFromGuesses = localStorage.getItem("color-guesses");
+    colorsFromGuesses =
+      storedColorsFromGuesses != null
+        ? JSON.parse(storedColorsFromGuesses)
+        : [];
+
+    const storedIsGameOver = localStorage.getItem("is-game-over");
+    isGameOver =
+      storedIsGameOver != null
+        ? JSON.parse(storedIsGameOver) === "true"
+        : false;
+
+    // secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    localStorage.setItem("secret", JSON.stringify(secret));
   });
 
   onDestroy(async () => {
@@ -101,6 +125,7 @@
   };
 
   const handleSubmit = (): void => {
+    // Trigger error if not a valid guess or doesn't have 5 characters
     if (currentGuess.length !== 5) {
       isError = true;
       setTimeout(() => (isError = false), 250);
@@ -113,9 +138,11 @@
       triggerPopOver("Not a valid word");
       return;
     }
+    // Append the guess and get the color tiles
     guesses = [...guesses, currentGuess];
     getColorsFromGuess(guesses, numAttempts);
 
+    // Game over scenarios
     if (currentGuess === secret.word || guesses.length === 6) {
       if (browser) window.removeEventListener("keydown", handleKeyType);
       setTimeout(() => {
@@ -130,6 +157,7 @@
       setContainerOpen(WORD_REVEAL_ANIMATION_DELAY + MESSAGE_DURATION);
       currentGuess = "";
     } else {
+      // Word reveal animation
       currentGuess = "";
       if (browser) window.removeEventListener("keydown", handleKeyType);
       setTimeout(() => {
@@ -137,6 +165,7 @@
       }, WORD_REVEAL_ANIMATION_DELAY);
       numAttempts++;
     }
+    saveInLocalStorage();
   };
 
   const handleKeyType = (event: KeyboardEvent) => {
@@ -144,7 +173,18 @@
     if (event.key === "Backspace") currentGuess = currentGuess.slice(0, -1);
     else if (event.key === "Enter") handleSubmit();
     if (currentGuess.length === 5) return;
-    if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
+    if (event.key >= "a" && event.key <= "z") {
+      currentGuess += event.key;
+      console.log(currentGuess);
+    }
+  };
+
+  const saveInLocalStorage = () => {
+    localStorage.setItem("attempts", JSON.stringify(numAttempts));
+    localStorage.setItem("guesses", JSON.stringify(guesses));
+    localStorage.setItem("color-guesses", JSON.stringify(colorsFromGuesses));
+    localStorage.setItem("is-game-over", JSON.stringify(isGameOver));
+    localStorage.setItem("secret", JSON.stringify(secret));
   };
 
   const resetGame = () => {
@@ -157,6 +197,7 @@
     gameOverMessage = "";
     if (browser) window.addEventListener("keydown", handleKeyType);
     secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    saveInLocalStorage();
   };
 </script>
 
@@ -177,12 +218,15 @@
     bind:isError
   />
 
-  {#if data.session}
-    {#if isGameOver}
-      <button class="reset-button" on:click={resetGame}>
+  {#if isGameOver}
+    {#if data.session}
+      <button class="after-button" on:click={resetGame}>
         Generate New Word
       </button>
     {/if}
+    <button class="after-button" on:click={() => (isWordCardOpen = true)}>
+      Show Word Details
+    </button>
   {/if}
 
   <KeyBoard
@@ -209,7 +253,7 @@
     border-radius: 0.25rem;
   }
 
-  .reset-button {
+  .after-button {
     margin-block: 0.5rem;
     color: var(--color-contrast);
     /* border: 2px solid var(--border-empty); */

@@ -34,7 +34,6 @@
 
   const toggleContainer = (): void => {
     isContainerOpen = !isContainerOpen;
-    console.log(isContainerOpen);
   };
 </script>
 
