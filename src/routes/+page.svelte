@@ -47,7 +47,7 @@
         : ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
 
     const storedAttempts = localStorage.getItem("attempts");
-    numAttempts = storedAttempts ? parseInt(JSON.stringify(storedAttempts)) : 0;
+    numAttempts = storedAttempts ? JSON.parse(storedAttempts) : 0;
 
     const storedGuesses = localStorage.getItem("guesses");
     guesses = storedGuesses != null ? JSON.parse(storedGuesses) : [];
@@ -60,9 +60,7 @@
 
     const storedIsGameOver = localStorage.getItem("is-game-over");
     isGameOver =
-      storedIsGameOver != null
-        ? JSON.parse(storedIsGameOver) === "true"
-        : false;
+      storedIsGameOver != null ? JSON.parse(storedIsGameOver) : false;
 
     // secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
     localStorage.setItem("secret", JSON.stringify(secret));
@@ -141,15 +139,17 @@
     // Append the guess and get the color tiles
     guesses = [...guesses, currentGuess];
     getColorsFromGuess(guesses, numAttempts);
+    numAttempts++;
 
     // Game over scenarios
-    if (currentGuess === secret.word || guesses.length === 6) {
+    if (currentGuess === secret.word || numAttempts === 6) {
       if (browser) window.removeEventListener("keydown", handleKeyType);
       setTimeout(() => {
         isGameOver = true;
+        saveInLocalStorage();
       }, WORD_REVEAL_ANIMATION_DELAY + MESSAGE_DURATION);
       if (currentGuess === secret.word) {
-        gameOverMessage = WIN_MESSAGES[numAttempts];
+        gameOverMessage = WIN_MESSAGES[numAttempts - 1];
       } else {
         gameOverMessage = secret.word;
       }
@@ -163,7 +163,6 @@
       setTimeout(() => {
         if (browser) window.addEventListener("keydown", handleKeyType);
       }, WORD_REVEAL_ANIMATION_DELAY);
-      numAttempts++;
     }
     saveInLocalStorage();
   };
@@ -173,10 +172,7 @@
     if (event.key === "Backspace") currentGuess = currentGuess.slice(0, -1);
     else if (event.key === "Enter") handleSubmit();
     if (currentGuess.length === 5) return;
-    if (event.key >= "a" && event.key <= "z") {
-      currentGuess += event.key;
-      console.log(currentGuess);
-    }
+    if (event.key >= "a" && event.key <= "z") currentGuess += event.key;
   };
 
   const saveInLocalStorage = () => {
