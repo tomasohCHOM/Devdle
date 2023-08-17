@@ -26,6 +26,7 @@
 
   export let data: PageData;
   let secret: Secret;
+  let secretIndex: number;
   let guesses: string[] = [];
   let colorsFromGuesses: string[] = [];
   let currentGuess: string = "";
@@ -40,11 +41,11 @@
   onMount(async () => {
     window.addEventListener("keydown", handleKeyType);
     // Get all items from localStorage if they exist
-    const storedSecret = localStorage.getItem("secret");
-    secret =
-      storedSecret != null
-        ? JSON.parse(storedSecret)
-        : ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    const storedSecretIndex = localStorage.getItem("secret-index");
+    secretIndex =
+      storedSecretIndex != null
+        ? JSON.parse(storedSecretIndex)
+        : Math.floor(Math.random() * ANSWERS.length);
 
     const storedAttempts = localStorage.getItem("attempts");
     numAttempts = storedAttempts ? JSON.parse(storedAttempts) : 0;
@@ -62,8 +63,8 @@
     isGameOver =
       storedIsGameOver != null ? JSON.parse(storedIsGameOver) : false;
 
-    // secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
-    localStorage.setItem("secret", JSON.stringify(secret));
+    secret = ANSWERS[secretIndex];
+    localStorage.setItem("secret-index", JSON.stringify(secretIndex));
   });
 
   onDestroy(async () => {
@@ -180,7 +181,7 @@
     localStorage.setItem("guesses", JSON.stringify(guesses));
     localStorage.setItem("color-guesses", JSON.stringify(colorsFromGuesses));
     localStorage.setItem("is-game-over", JSON.stringify(isGameOver));
-    localStorage.setItem("secret", JSON.stringify(secret));
+    localStorage.setItem("secret-index", JSON.stringify(secretIndex));
   };
 
   const resetGame = () => {
@@ -192,7 +193,8 @@
     isError = false;
     gameOverMessage = "";
     if (browser) window.addEventListener("keydown", handleKeyType);
-    secret = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+    secretIndex = Math.floor(Math.random() * ANSWERS.length);
+    secret = ANSWERS[secretIndex];
     saveInLocalStorage();
   };
 </script>
