@@ -29,7 +29,7 @@
   </div>
   <slot name="sub-header" />
   <slot name="word-definition" />
-  <slot />
+  <slot name="help" />
 </section>
 
 <div

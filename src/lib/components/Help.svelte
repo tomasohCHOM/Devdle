@@ -10,38 +10,40 @@
   <h2 class="sub-header" slot="sub-header">
     <strong>Guess the Devdle in 6 tries.</strong>
   </h2>
-  <ul class="rules-list">
-    <li>Each guess must be a valid 5-letter word.</li>
-    <li>
-      The color of the tiles will change to show how close your guess was to the
-      word.
-    </li>
-  </ul>
-  <h2 class="sub-header examples"><strong>Examples</strong></h2>
-  <div class="wordle-row">
-    {#each examples[exampleIndex++] as letter, i}
-      <div class="wordle-tiles {i === 0 ? 'correct' : ''}">
-        {letter.toUpperCase()}
-      </div>
-    {/each}
-  </div>
-  <p>C is in the word and in the correct spot.</p>
-  <div class="wordle-row">
-    {#each examples[exampleIndex++] as letter, i}
-      <div class="wordle-tiles {i === 1 ? 'present' : ''}">
-        {letter.toUpperCase()}
-      </div>
-    {/each}
-  </div>
-  <p>R is in the word but in the wrong spot.</p>
-  <div class="wordle-row">
-    {#each examples[exampleIndex] as letter, i}
-      <div class="wordle-tiles {i === 2 ? 'absent' : ''}">
-        {letter.toUpperCase()}
-      </div>
-    {/each}
-  </div>
-  <p>E is not in the word in any spot.</p>
+  <svelte:fragment slot="help">
+    <ul class="rules-list">
+      <li>Each guess must be a valid 5-letter word.</li>
+      <li>
+        The color of the tiles will change to show how close your guess was to
+        the word.
+      </li>
+    </ul>
+    <h2 class="sub-header examples"><strong>Examples</strong></h2>
+    <div class="wordle-row">
+      {#each examples[exampleIndex++] as letter, i}
+        <div class="wordle-tiles {i === 0 ? 'correct' : ''}">
+          {letter.toUpperCase()}
+        </div>
+      {/each}
+    </div>
+    <p>C is in the word and in the correct spot.</p>
+    <div class="wordle-row">
+      {#each examples[exampleIndex++] as letter, i}
+        <div class="wordle-tiles {i === 1 ? 'present' : ''}">
+          {letter.toUpperCase()}
+        </div>
+      {/each}
+    </div>
+    <p>R is in the word but in the wrong spot.</p>
+    <div class="wordle-row">
+      {#each examples[exampleIndex] as letter, i}
+        <div class="wordle-tiles {i === 2 ? 'absent' : ''}">
+          {letter.toUpperCase()}
+        </div>
+      {/each}
+    </div>
+    <p>E is not in the word in any spot.</p>
+  </svelte:fragment>
 </CoverContainer>
 
 <style lang="scss">
