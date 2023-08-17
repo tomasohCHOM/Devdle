@@ -2,8 +2,8 @@
   import CoverContainer from "./CoverContainer.svelte";
   export let isOpen: boolean;
 
-  let examples: string[] = ["clone", "grasp", "trees"];
-  let exampleIndex: number = 0;
+  // let examples: string[] = ["clone", "grasp", "trees"];
+  // let exampleIndex: number = 0;
 </script>
 
 <CoverContainer bind:isOpen title="How to Play">
@@ -20,7 +20,7 @@
     </ul>
     <h2 class="sub-header examples"><strong>Examples</strong></h2>
     <div class="wordle-row">
-      {#each examples[exampleIndex++] as letter, i}
+      {#each "clone" as letter, i}
         <div class="wordle-tiles {i === 0 ? 'correct' : ''}">
           {letter.toUpperCase()}
         </div>
@@ -28,7 +28,7 @@
     </div>
     <p>C is in the word and in the correct spot.</p>
     <div class="wordle-row">
-      {#each examples[exampleIndex++] as letter, i}
+      {#each "grasp" as letter, i}
         <div class="wordle-tiles {i === 1 ? 'present' : ''}">
           {letter.toUpperCase()}
         </div>
@@ -36,7 +36,7 @@
     </div>
     <p>R is in the word but in the wrong spot.</p>
     <div class="wordle-row">
-      {#each examples[exampleIndex] as letter, i}
+      {#each "trees" as letter, i}
         <div class="wordle-tiles {i === 2 ? 'absent' : ''}">
           {letter.toUpperCase()}
         </div>

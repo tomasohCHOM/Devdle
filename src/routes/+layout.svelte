@@ -18,7 +18,7 @@
   <main>
     <Navbar bind:data bind:isContainerOpen={isHelpOpen} />
 
-    <!-- <Help bind:isOpen={isHelpOpen} /> -->
+    <Help bind:isOpen={isHelpOpen} />
 
     <slot />
   </main>
