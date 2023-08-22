@@ -118,8 +118,18 @@
 
   @media screen and (max-width: 36em) {
     .keyboard-key {
-      padding: 0.2em 0.4em;
+      padding: 0.5em 0.7em;
       font-size: 1rem;
+    }
+  }
+  @media screen and (max-width: 25em) {
+    .keyboard-key {
+      padding: 0.5em 0.5em;
+    }
+  }
+  @media screen and (max-width: 20em) {
+    .keyboard-key {
+      padding: 0.5em 0.4em;
     }
   }
 </style>
