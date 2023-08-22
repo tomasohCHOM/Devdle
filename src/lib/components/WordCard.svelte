@@ -12,14 +12,16 @@
 </script>
 
 <CoverContainer bind:isOpen title={secret?.word}>
-  <div slot="word-definition">
-    {secret?.description}
-  </div>
-  <img
-    class="supplemental-image"
-    src={secret?.supplementalImageLink}
-    alt="Supplemental Image for {secret?.word}"
-  />
+  <svelte:fragment slot="word-definition">
+    <div>
+      {secret?.description}
+    </div>
+    <img
+      class="supplemental-image"
+      src={secret?.supplementalImageLink}
+      alt="Supplemental Image for {secret?.word}"
+    />
+  </svelte:fragment>
 </CoverContainer>
 
 <style lang="scss">
