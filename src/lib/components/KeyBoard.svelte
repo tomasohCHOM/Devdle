@@ -4,6 +4,7 @@
   export let currentGuess: string;
   export let guesses: string[];
   export let answer: string;
+  export let isGameOver: boolean;
   export let handleSubmit: () => void;
   const keys = ["qwertyuiop", "asdfghjkl", "<zxcvbnm>"];
 
@@ -33,6 +34,7 @@
   };
 
   const clickKey = (key: string) => {
+    if (isGameOver) return;
     if (key == "<") {
       currentGuess = currentGuess.slice(0, -1);
       return;

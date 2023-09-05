@@ -232,6 +232,7 @@
   {/if}
 
   <KeyBoard
+    bind:isGameOver
     bind:currentGuess
     bind:guesses
     answer={secret?.word}
