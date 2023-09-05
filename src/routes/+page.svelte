@@ -217,11 +217,15 @@
   />
 
   {#if isGameOver}
-    {#if data.session}
-      <button class="after-button" on:click={resetGame}>
-        Generate New Word
-      </button>
-    {/if}
+    <button
+      class="after-button"
+      on:click={() =>
+        data.session
+          ? resetGame()
+          : triggerPopOver("Log in to continue playing!")}
+    >
+      Generate New Word
+    </button>
     <button class="after-button" on:click={() => (isWordCardOpen = true)}>
       Show Word Details
     </button>
