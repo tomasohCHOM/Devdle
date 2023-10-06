@@ -102,4 +102,18 @@
       border: none;
     }
   }
+
+  @media only screen and (max-width: 30rem) {
+    .wordle-tiles {
+      width: 2.5rem;
+    }
+
+    .rules-list > li {
+      font-size: 0.75rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
 </style>

@@ -11,13 +11,6 @@
 
 <section class="cover-container {isOpen === true ? 'active' : ''}">
   <div class="top-section">
-    <button class="placeholder"
-      ><img
-        class="icon-images"
-        src="/icons/close-window.png"
-        alt="Placeholder"
-      /></button
-    >
     <h2>{title}</h2>
     <button class="close-window-btn" on:click={toggleContainer}
       ><img
@@ -75,19 +68,13 @@
   .top-section {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  .placeholder {
-    visibility: hidden;
-
-    &:hover {
-      border: none;
-      outline: none;
-    }
+    justify-content: center;
   }
 
   .close-window-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
     padding: 0.6em 0.6em;
     background-color: var(--cover-container-color);
 
@@ -111,6 +98,24 @@
     &.active {
       opacity: 1;
       visibility: visible;
+    }
+  }
+
+  @media only screen and (max-width: 22rem) {
+    .top-section {
+      justify-content: space-between;
+    }
+  }
+
+  @media only screen and (max-width: 22rem) {
+    .cover-container {
+      padding: 0.75rem;
+    }
+  }
+
+  @media only screen and (max-height: 37.5rem) {
+    .cover-container {
+      width: min(40rem, 95vw);
     }
   }
 </style>
