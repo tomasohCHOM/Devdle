@@ -1,38 +1,31 @@
-# create-svelte
+# Devdle
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Devdle is a Wordle-inspired web application built to challenge your knowledge of software! It encompasses 50+ Computer Science and Web Development concepts, including descriptions and images of the terms at hand. The rules are the same as if you were playing the original Wordle: 6 tries to guess a 5-letter word. Feedback will be given in the form of colored-marked tiles that indicate the correctness of each guess. Guess the word in under 6 tries to win the game!
 
-## Creating a project
+![Demo Image of Devdle]()
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Setup
+
+You can clone this repository into your local machine and install all the dependencies through your terminal:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git clone https://github.com/tomasohCHOM/Devdle.git
+cd Devdle
+npm i
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Afterwards, run the process through the following command...
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+...to serve it in your local environment.
 
-## Building
+## Tech Stack
 
-To create a production version of your app:
+This project was created using:
+- SvelteKit
+- TypeScript
+- Sass
+- Supabase (Integrated Social OAuth with Google, Github, and Discord)
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Do you think you have what it takes to beat Devdle? Only one way to find out! Thank you for stopping by!
