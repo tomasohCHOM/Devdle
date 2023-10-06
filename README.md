@@ -2,7 +2,9 @@
 
 Devdle is a Wordle-inspired web application built to challenge your knowledge of software! It encompasses 50+ Computer Science and Web Development concepts, including descriptions and images of the terms at hand. The rules are the same as if you were playing the original Wordle: 6 tries to guess a 5-letter word. Feedback will be given in the form of colored-marked tiles that indicate the correctness of each guess. Guess the word in under 6 tries to win the game!
 
-![Demo Image of Devdle]()
+<div align="center">
+  <img src="/static/devdle.png" alt="Devdle Demo Image" height="500" />
+</div>
 
 ## Setup
 
