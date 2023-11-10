@@ -28,6 +28,7 @@
   .supplemental-image {
     margin-block-start: 1rem;
     max-width: 80%;
+    max-height: 12rem;
     object-fit: cotain;
   }
 </style>

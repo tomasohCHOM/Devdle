@@ -112,10 +112,4 @@
       padding: 0.75rem;
     }
   }
-
-  @media only screen and (max-height: 37.5rem) {
-    .cover-container {
-      width: min(40rem, 95vw);
-    }
-  }
 </style>

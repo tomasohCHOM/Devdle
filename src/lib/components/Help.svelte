@@ -116,4 +116,15 @@
       font-size: 0.75rem;
     }
   }
+
+  @media only screen and (max-height: 37.5rem) {
+    .wordle-tiles {
+      width: 2rem;
+      font-size: 1rem;
+    }
+
+    p {
+      margin-block: 0.5rem;
+    }
+  }
 </style>
