@@ -113,10 +113,6 @@ html[data-theme="dark"] {
   -webkit-filter: brightness(0) invert(1);
 }
 
-.disable-double-tap-zoom {
-  touch-action: none;
-}
-
 @media screen and (max-width: 30em) {
   .icon-images {
     width: 1.5rem;
