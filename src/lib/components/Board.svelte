@@ -25,31 +25,29 @@
   };
 </script>
 
-<main>
-  <section class="board">
-    {#each NUM_ROWS as _, i}
-      <div class="board-row">
-        {#each NUM_CELLS as _, j}
-          <div
-            class="board-cell {guesses[i] !== undefined
-              ? convertColorsToCSSColorClasses(i, j)
-              : ''}"
-            class:border-active={i === guesses.length &&
-              currentGuess[j] !== undefined}
-            class:shake={i === guesses.length && isError === true}
-            style="--order: {j}; --win-delay: {WORD_REVEAL_ANIMATION_DELAY};"
-          >
-            {#if i === numAttempts && currentGuess.length - 1 >= j}
-              {currentGuess[j].toUpperCase()}
-            {:else}
-              {guesses[i]?.[j].toUpperCase() ?? ""}
-            {/if}
-          </div>
-        {/each}
-      </div>
-    {/each}
-  </section>
-</main>
+<section class="board">
+  {#each NUM_ROWS as _, i}
+    <div class="board-row">
+      {#each NUM_CELLS as _, j}
+        <div
+          class="board-cell {guesses[i] !== undefined
+            ? convertColorsToCSSColorClasses(i, j)
+            : ''}"
+          class:border-active={i === guesses.length &&
+            currentGuess[j] !== undefined}
+          class:shake={i === guesses.length && isError === true}
+          style="--order: {j}; --win-delay: {WORD_REVEAL_ANIMATION_DELAY};"
+        >
+          {#if i === numAttempts && currentGuess.length - 1 >= j}
+            {currentGuess[j].toUpperCase()}
+          {:else}
+            {guesses[i]?.[j].toUpperCase() ?? ""}
+          {/if}
+        </div>
+      {/each}
+    </div>
+  {/each}
+</section>
 
 <style lang="scss">
   .board-row {

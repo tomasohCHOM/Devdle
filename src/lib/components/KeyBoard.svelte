@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WORD_REVEAL_ANIMATION_DELAY } from "$lib/constants/values";
+  // import { WORD_REVEAL_ANIMATION_DELAY } from "$lib/constants/values";
 
   export let currentGuess: string;
   export let guesses: string[];
@@ -47,7 +47,7 @@
   };
 </script>
 
-<main>
+<section class="disable-double-tap-zoom">
   <br />
   {#key guesses}
     {#each keys as key}
@@ -72,10 +72,10 @@
       </div>
     {/each}
   {/key}
-</main>
+</section>
 
 <style>
-  main {
+  section {
     padding-block-end: 1.5rem;
   }
 
@@ -107,6 +107,11 @@
     color: var(--color-true-white);
     /* animation-name: keyboardDelay;
     animation-delay: calc(var(--key-delay) * 1ms); */
+  }
+
+  /* For disabling constant double tapping on mobile devices. */
+  .disable-double-tap-zoom {
+    touch-action: manipulation;
   }
 
   @keyframes keyboardDelay {
