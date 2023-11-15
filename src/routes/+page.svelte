@@ -24,7 +24,7 @@
     supplementalImageLink: string;
   }
 
-  export let data: PageData;
+  // export let data: PageData;
   let secret: Secret;
   let secretIndex: number;
   let guesses: string[] = [];
@@ -217,13 +217,7 @@
   />
 
   {#if isGameOver}
-    <button
-      class="after-button"
-      on:click={() =>
-        data.session
-          ? resetGame()
-          : triggerPopOver("Log in to continue playing!")}
-    >
+    <button class="after-button" on:click={() => resetGame()}>
       Generate New Word
     </button>
     <button class="after-button" on:click={() => (isWordCardOpen = true)}>
