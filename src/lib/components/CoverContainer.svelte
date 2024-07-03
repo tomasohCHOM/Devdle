@@ -1,6 +1,4 @@
 <script lang="ts">
-  // import closeWindow from "/icons/close-window.png";
-
   export let title: string = "Error: Failed to load secret word.";
   export let isOpen: boolean;
 

@@ -2,7 +2,6 @@
   import "../styles/app.css";
   import { browser } from "$app/environment";
   import { onDestroy, onMount } from "svelte";
-  import type { PageData } from "./$types";
   import { ANSWERS } from "$lib/constants/answersList";
   import { WIN_MESSAGES } from "$lib/constants/strings";
   import {
@@ -24,7 +23,6 @@
     supplementalImageLink: string;
   }
 
-  // export let data: PageData;
   let secret: Secret;
   let secretIndex: number;
   let guesses: string[] = [];
