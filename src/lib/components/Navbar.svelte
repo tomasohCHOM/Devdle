@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { PageData } from "../../routes/$types";
 
-  export let data: PageData;
   export let isContainerOpen: boolean;
 
   let currentTheme: string;
@@ -62,15 +60,6 @@
     >
       <img src="/icons/help.png" alt="Help" class="icon-images filter-on" />
     </div>
-    <div>
-      <a href="/leaderboard">
-        <img
-          src="/icons/leaderboard.png"
-          alt="Leaderboard"
-          class="icon-images filter-on"
-        />
-      </a>
-    </div>
     <div
       on:click={toggleTheme}
       on:keydown={toggleTheme}
@@ -83,21 +72,6 @@
         alt="Dark Theme Toggle"
         class="icon-images filter-on"
       />
-    </div>
-    <div>
-      {#if data.session}
-        <a href="/dashboard">
-          <img
-            class="icon-images filter-on"
-            src="/icons/profile.png"
-            alt="Account Profile"
-          />
-        </a>
-      {:else}
-        <a href="/login">
-          <button>Log In</button>
-        </a>
-      {/if}
     </div>
   </section>
 </header>
@@ -128,25 +102,14 @@
       & a {
         text-decoration: none;
       }
-
-      & button {
-        background-color: var(--color-primary);
-        color: var(--color-contrast);
-        border: 2px solid var(--border-active);
-        border-radius: 2rem;
-        transition: all 0.125s ease-in;
-
-        &:not(.profile):hover {
-          background-color: var(--color-contrast);
-          color: var(--color-primary);
-        }
-      }
     }
+
     & :first-child {
       display: flex;
       align-items: center;
       justify-content: flex-start;
     }
+
     & :last-child {
       display: flex;
       align-items: center;
@@ -154,24 +117,20 @@
       gap: 1rem;
     }
   }
+
   .lg-header {
     font-size: 3.2em;
     line-height: 1.1;
     font-family: var(--ff-custom);
     letter-spacing: -0.125rem;
   }
+
   @media screen and (max-width: 50em) {
     .navbar {
       padding: 0 0.5rem;
 
       & :first-child {
         flex: 0;
-      }
-
-      & :last-child {
-        flex-basis: max-content;
-        flex-grow: 0;
-        gap: 0.5rem;
       }
     }
 
@@ -188,11 +147,6 @@
       gap: 0.5rem;
       & :last-child {
         gap: 0.25rem;
-        & button {
-          font-size: 0.875rem;
-          padding: 0.25rem 0.5rem;
-          border-radius: 0.75rem;
-        }
       }
     }
 
