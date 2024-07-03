@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
 
 :root {
+  /* Site color scheme defined at the end of this file */
+
   font-family: var(--ff-regular);
   line-height: 1.5;
   font-weight: 400;
@@ -21,13 +23,7 @@
   --color-correct: #6aaa64;
   --color-present: #c9b458;
   --color-absent: #787c7e;
-
-  --color-primary: #ffffff;
-  --color-secondary: #e5e5e5;
-  --color-contrast: #393939;
   --color-true-white: #ffffff;
-  --cover-container-color: #f3f3f3;
-  --color-warning: #e73f3f;
 
   --border-empty: #d3d6da;
   --border-pop: #aba9a9;
@@ -82,31 +78,29 @@ button {
   cursor: pointer;
 }
 
-.filter-on {
-  filter: invert(26%) sepia(0%) saturate(32%) hue-rotate(251deg) brightness(99%)
-    contrast(83%);
-  -webkit-filter: invert(26%) sepia(0%) saturate(32%) hue-rotate(251deg)
-    brightness(99%) contrast(83%);
-}
-
 html[data-theme="light"] {
   --color-primary: #ffffff;
-  --color-secondary: #e9e9e9;
-  --color-contrast: #393939;
+  --color-secondary: #e6f0f4;
+  --color-contrast: #14343c;
   --border-empty: #d3d6da;
   --border-active: #878a8c;
   --cover-container-color: #f3f3f3;
-  /* transition: all 0.15s ease-in; */
 }
 
 html[data-theme="dark"] {
-  --color-primary: #393939;
-  --color-secondary: #4e4e4e;
+  --color-primary: #2b3036;
+  --color-secondary: #373f47;
   --color-contrast: #e5e5e5;
   --border-empty: #878a8c;
   --border-active: #d3d6da;
   --cover-container-color: var(--color-secondary);
-  /* transition: all 0.15s ease-in; */
+}
+
+.filter-on {
+  filter: invert(16%) sepia(37%) saturate(768%) hue-rotate(145deg)
+    brightness(92%) contrast(93%);
+  -webkit-filter: invert(16%) sepia(37%) saturate(768%) hue-rotate(145deg)
+    brightness(92%) contrast(93%);
 }
 
 [data-theme="dark"] .filter-on {
